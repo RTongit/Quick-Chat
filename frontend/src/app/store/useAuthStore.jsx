@@ -6,6 +6,8 @@ import { create } from "zustand";
 import { toast } from "react-hot-toast";
 import { io } from "socket.io-client";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 export const useAuthStore = create((set,get) => ({
   authUser: null, // It is an object 
   isSigningUp: false,
@@ -18,7 +20,7 @@ export const useAuthStore = create((set,get) => ({
   // Check if the user is already authenticated (logged in) or not.
   checkAuth: async () => {
     try {
-      const res = await fetch("http://localhost:67/api/auth/check", {
+      const res = await fetch(`${BACKEND_URL}/api/auth/check`, {
         credentials: "include",
         cache: "no-store",
       });
@@ -42,7 +44,7 @@ export const useAuthStore = create((set,get) => ({
   signUp: async (formData) => {
     set({ isSigningUp: true });
     try {
-      const res = await fetch("http://localhost:67/api/auth/signup", {
+      const res = await fetch(`${BACKEND_URL}/api/auth/signup`, {
         method: "POST",
         headers : {"Content-Type" : "application/json"},
         body: JSON.stringify(formData),
@@ -70,7 +72,7 @@ export const useAuthStore = create((set,get) => ({
   login : async (formData) => {
     set({isLoggingIn:true});
     try{
-       const res = await fetch("http://localhost:67/api/auth/login",{
+       const res = await fetch(`${BACKEND_URL}/api/auth/login`,{
         method : "POST",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify(formData),
@@ -95,7 +97,7 @@ export const useAuthStore = create((set,get) => ({
 
   logout : async () => {
     try {
-      const res = await fetch("http://localhost:67/api/auth/logout",{
+      const res = await fetch(`${BACKEND_URL}/api/auth/logout`,{
         method : "POST",
         credentials : "include" 
       })
@@ -115,7 +117,7 @@ export const useAuthStore = create((set,get) => ({
   updateProfile : async (data) => {
     set({isUpdatingProfile:true})
     try{
-      const res = await fetch("http://localhost:67/api/auth/update-profile",{
+      const res = await fetch(`${BACKEND_URL}/api/auth/update-profile`,{
         method : "PUT",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify(data),
@@ -140,7 +142,7 @@ export const useAuthStore = create((set,get) => ({
   
   connectSocket : () =>{
     const {authUser} = get();
-    const socket = io("http://localhost:67",{query : {userId : authUser._id}}); // The backend url 
+    const socket = io(`${BACKEND_URL}`,{query : {userId : authUser._id}}); // The backend url 
     set({socket:socket});
     socket.on("getOnlineUsers",(userIds)=>{
       set({onlineUsers:userIds});

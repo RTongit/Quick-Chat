@@ -2,6 +2,8 @@ import { create } from "zustand";
 import toast from "react-hot-toast";
 import { useAuthStore } from "./useAuthStore";
 
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 export const useChatStore = create((set,get)=>({
     users : [],
     messages : [],
@@ -12,7 +14,7 @@ export const useChatStore = create((set,get)=>({
     getUsers : async ()=> {
         set({isUsersLoading : true})
         try {
-            const res = await fetch("http://localhost:67/api/messages/users",{
+            const res = await fetch(`${BACKEND_URL}/api/messages/users`,{
                 credentials : "include",
                 cache : "no-store"
             })
@@ -33,7 +35,7 @@ export const useChatStore = create((set,get)=>({
     getMessages : async (userToChatId) => {
         set({isMessagesLoading :true});
         try {
-            const res = await fetch(`http://localhost:67/api/messages/chatlog/${userToChatId}`,{
+            const res = await fetch(`${BACKEND_URL}/messages/chatlog/${userToChatId}`,{
                 credentials : "include",
                 cache : "no-store",
             })
@@ -55,7 +57,7 @@ export const useChatStore = create((set,get)=>({
         // Below line is coming from zustand
         const {selectedUser,messages} = get()
         try {
-            const res = await fetch(`http://localhost:67/api/messages/sendMessage/${selectedUser._id}`,{
+            const res = await fetch(`${BACKEND_URL}/api/messages/sendMessage/${selectedUser._id}`,{
                 method : "POST",
                 headers : {"Content-Type" : "application/json"},
                 body : JSON.stringify(messageData),
