@@ -12,7 +12,7 @@ const PORT = process.env.PORT
 
 app.use(cors(
   {
-    origin : "http://localhost:3001",
+    origin : "http://localhost:3000",
     credentials : true // because we are using cookies 
   }
 ))
