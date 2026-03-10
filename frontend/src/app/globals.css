@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+body {
+  background: white;
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+}
+@plugin "daisyui" {
+  themes : all;
+}
