@@ -88,7 +88,7 @@ export async function logout(req,res){
         res.clearCookie('jwt',
         {
             httpOnly : true,            
-            sameSite : "strict",     
+            sameSite : process.env.NODE_ENV === "production" ? "none" : "lax", 
             secure : process.env.NODE_ENV === "production" ? true : false
         }
         );
