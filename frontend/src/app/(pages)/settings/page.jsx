@@ -119,9 +119,6 @@ export default function Settings() {
           </div>
         </div>
 
-        <Link href="/" className="underline">
-          Go to HomePage
-        </Link>
       </div>
   );
 }

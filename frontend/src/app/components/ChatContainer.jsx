@@ -45,17 +45,18 @@ export default function ChatContainer() {
                         <Image fill sizes="40px" src={`${message.senderId===authUser._id ? authUser.profilePic || "/avatar.png" : selectedUser.profilePic || "/avatar.png"}`} alt="profile pic" className="object-cover rounded-full border-2"/>
                       </div>
 
-                      {/* Time Stamp */}
-                      <div className="chat-header mb-1">
-                        <time  className="text-xs opacity-50 ml-1"dateTime={message.createdAt}>
-                            {getChatTime(message.createdAt)}
-                        </time>
-                      </div>
-
                       {/* Actual message block */}
-                      <div className="chat-bubble flex flex-col sm:max-w-[90%] max-w-[75%] break-words">
-                        {message.text ? <p className="break-words">{message.text}</p> : null } 
+                      <div className={`chat-bubble flex flex-col sm:max-w-[90%] max-w-[75%] wrap-break-words ${message.senderId===authUser._id ? "bg-primary text-primary-content" : "bg-base-200"}`}>
+                        {message.text ? <p className={`wrap-break-words`}>{message.text}</p> : null } 
                         {message.image ? <div className="relative sm:h-44 h-28 sm:w-60 w-30"><Image fill sizes="200px" alt= "Message" src={message.image} className="rounded-md object-cover"/></div> : null}
+                        
+                        {/* Time Stamp */}
+                         <div className="chat-header mb-1">
+                           <time  className={`text-xs opacity-50 ml-1 ${message.senderId===authUser._id ? "text-primary-content/70" : "text-base-content/70"}`} dateTime={message.createdAt}>
+                             {getChatTime(message.createdAt)}
+                           </time>
+                         </div>
+                         
                       </div>
 
                     </div>))
