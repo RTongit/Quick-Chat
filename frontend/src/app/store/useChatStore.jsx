@@ -94,7 +94,8 @@ export const useChatStore = create((set,get)=>({
 
     unsubscribeFromMessage : () =>{
         const socket = useAuthStore.getState().socket;
-        // This stops listening to receiveNewMessage event 
+        // This stops listening to receiveNewMessage event
+        if(!socket) return; 
         socket.off("receiveNewMessage");
     },
 

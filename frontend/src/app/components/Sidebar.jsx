@@ -19,7 +19,7 @@ export default function Sidebar() {
   if (isUsersLoading) return <SidebarLoadingSkeleton />;
 
   return (
-    <aside className="h-full w-15  lg:w-72 border-r border-base-300 flex flex-col transition-all duration-300">
+    <aside className="h-full w-16  lg:w-72 border-r border-base-300 flex flex-col transition-all duration-300">
       <div className="border-b border-base-300 w-full box-border p-5">
         <div className="flex items-center gap-2">
           <User className="size-6" />
