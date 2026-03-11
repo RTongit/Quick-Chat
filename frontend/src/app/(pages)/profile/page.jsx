@@ -88,8 +88,8 @@ export default function ProfilePage() {
                     </div>
 
                     {/*Display Section of User(Read Only)*/}
-                    <div className="max-w-md mx-auto mt-10 rounded-2xl bg-base-200 backdrop-blur-xl shadow-lg p-6 border border-gray-200">
-                       <div className="flex items-center gap-4">
+                    <div className="max-w-md mx-auto mt-10 rounded-2xl bg-base-200 backdrop-blur-xl shadow-lg border border-gray-200">
+                       <div className="flex items-center gap-4 p-4">
                           {/* Avatar */}
                           <div className="shrink-0 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-linear-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-base-content sm:text-xl text-sm font-semibold">
                             {UserInitial}
