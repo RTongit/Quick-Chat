@@ -35,7 +35,7 @@ export const useChatStore = create((set,get)=>({
     getMessages : async (userToChatId) => {
         set({isMessagesLoading :true});
         try {
-            const res = await fetch(`${BACKEND_URL}/messages/chatlog/${userToChatId}`,{
+            const res = await fetch(`${BACKEND_URL}/api/messages/chatlog/${userToChatId}`,{
                 credentials : "include",
                 cache : "no-store",
             })
