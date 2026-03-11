@@ -91,7 +91,7 @@ export default function ProfilePage() {
                     <div className="max-w-md mx-auto mt-10 rounded-2xl bg-base-200 backdrop-blur-xl shadow-lg p-6 border border-gray-200">
                        <div className="flex items-center gap-4">
                           {/* Avatar */}
-                          <div className="h-14 w-14 rounded-full bg-linear-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-base-content text-xl font-semibold">
+                          <div className="sm:size-14 size-10 rounded-full bg-linear-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-base-content text-xl font-semibold">
                             {UserInitial}
                           </div>
 

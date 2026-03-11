@@ -79,7 +79,7 @@ export default function MessageInput()  {
       {/* Message Input form */}
       <form onSubmit={handleSendMessage} className="flex items-center gap-2">
         <input type="text" 
-         className="flex-1 input input-bordered rounded-lg sm:input-md input-sm" 
+         className="w-full input input-bordered rounded-lg sm:input-md input-sm" 
          placeholder="Type a message.."
          value={text}
          onChange={(e)=>{setText(e.target.value)}}
@@ -97,7 +97,7 @@ export default function MessageInput()  {
         <button 
          type="button" 
          onClick={()=>{fileInputRef.current ?  fileInputRef.current.click() : null}}
-         className={`btn btn-primary hover:bg-secondary-content ${ImagePreview ? "text-emerald-500" : "text-zinc-500"}`}
+         className={`btn btn-primary hover:bg-primary/60`}
          >
           <Image size={20}/>
         </button>
@@ -105,7 +105,7 @@ export default function MessageInput()  {
         {/* Submit Button */}
         <button 
          type="submit"
-         className="btn btn-primary hover:bg-secondary-content text-zinc-500"
+         className="btn btn-primary hover:bg-primary/60"
          disabled={isDisabled}>
           <Send size={22}/>
         </button>
