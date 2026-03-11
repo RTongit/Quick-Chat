@@ -24,7 +24,7 @@ export default function Settings() {
         </div>  
 
           {/* Choosing theme section */}
-          <div className="grid lg:grid-cols-10 md:grid-col sm:grid-cols-6 grid-cols-4 gap-5">
+          <div className="grid lg:grid-cols-10 md:grid-col sm:grid-cols-6 grid-cols-3 gap-5">
             {THEMES.map((t) => (
               <button
                 key={t}
