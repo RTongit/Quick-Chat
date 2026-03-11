@@ -37,7 +37,7 @@ export default function ChatContainer() {
     return(
         <div className="flex flex-col overflow-auto flex-1">
             <ChatHeader/>
-            <div className="flex flex-1 flex-col overflow-y-auto p-4 space-y-4">
+            <div className="flex flex-1 flex-col overflow-y-auto sm:p-4 px-2 py-4 space-y-4">
                 {messages.map((message)=>(
                     <div key={message._id} className={`chat ${message.senderId===authUser._id ? "chat-end" : "chat-start"}`}>
                       {/* Profile Pic icon */}
@@ -53,7 +53,7 @@ export default function ChatContainer() {
                       </div>
 
                       {/* Actual message block */}
-                      <div className="chat-bubble flex flex-col sm:max-w-[90%] max-w-[75%]">
+                      <div className="chat-bubble flex flex-col sm:max-w-[90%] max-w-[75%] wrap-break-words">
                         {message.text ? <p className="wrap-break-words">{message.text}</p> : null } 
                         {message.image ? <div className="relative sm:h-44 h-28 sm:w-60 w-30"><Image fill sizes="200px" alt= "Message" src={message.image} className="rounded-md object-cover"/></div> : null}
                       </div>
