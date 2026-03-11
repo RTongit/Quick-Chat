@@ -53,8 +53,8 @@ export default function ChatContainer() {
                       </div>
 
                       {/* Actual message block */}
-                      <div className="chat-bubble flex flex-col sm:max-w-[90%] max-w-[75%] wrap-break-words">
-                        {message.text ? <p className="wrap-break-words">{message.text}</p> : null } 
+                      <div className="chat-bubble flex flex-col sm:max-w-[90%] max-w-[75%] break-words">
+                        {message.text ? <p className="break-words">{message.text}</p> : null } 
                         {message.image ? <div className="relative sm:h-44 h-28 sm:w-60 w-30"><Image fill sizes="200px" alt= "Message" src={message.image} className="rounded-md object-cover"/></div> : null}
                       </div>
 
