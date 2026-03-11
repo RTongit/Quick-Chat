@@ -61,7 +61,7 @@ export default function MessageInput()  {
       {ImagePreview ? 
       <div className="mb-3 flex items-center gap-2">
         <div className="relative">
-          <img src={ImagePreview} alt="ImagePreview" className="size-29 object-cover rounded-lg border border-zinc-700"/>
+          <img src={ImagePreview} alt="ImagePreview" className="sm:size-29 size-24 object-cover rounded-lg border border-zinc-700"/>
 
           <button 
            type="button"
@@ -79,7 +79,7 @@ export default function MessageInput()  {
       {/* Message Input form */}
       <form onSubmit={handleSendMessage} className="flex items-center gap-2">
         <input type="text" 
-         className="w-full input input-bordered rounded-lg sm:input-md input-sm" 
+         className="flex-1 input input-bordered rounded-lg sm:input-md input-sm" 
          placeholder="Type a message.."
          value={text}
          onChange={(e)=>{setText(e.target.value)}}
@@ -97,7 +97,7 @@ export default function MessageInput()  {
         <button 
          type="button" 
          onClick={()=>{fileInputRef.current ?  fileInputRef.current.click() : null}}
-         className={`btn btn-circle hover:bg-secondary-content sm:flex hidden ${ImagePreview ? "text-emerald-500" : "text-zinc-500"}`}
+         className={`btn btn-circle hover:bg-secondary-content ${ImagePreview ? "text-emerald-500" : "text-zinc-500"}`}
          >
           <Image size={20}/>
         </button>

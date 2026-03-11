@@ -41,7 +41,7 @@ export default function ChatContainer() {
                 {messages.map((message)=>(
                     <div key={message._id} className={`chat ${message.senderId===authUser._id ? "chat-end" : "chat-start"}`}>
                       {/* Profile Pic icon */}
-                      <div className="chat-image avatar relative size-10">
+                      <div className="chat-image avatar relative sm:size-10 size-8">
                         <Image fill sizes="40px" src={`${message.senderId===authUser._id ? authUser.profilePic || "/avatar.png" : selectedUser.profilePic || "/avatar.png"}`} alt="profile pic" className="object-cover rounded-full border-2"/>
                       </div>
 
@@ -55,7 +55,7 @@ export default function ChatContainer() {
                       {/* Actual message block */}
                       <div className="chat-bubble flex flex-col">
                         {message.text ? <p>{message.text}</p> : null } 
-                        {message.image ? <div className="relative sm:h-50 h-30 sm:w-60 w-40"><Image fill sizes="200px" alt= "Message" src={message.image} className="rounded-md object-cover"/></div> : null}
+                        {message.image ? <div className="relative sm:h-44 h-28 sm:w-60 w-40"><Image fill sizes="200px" alt= "Message" src={message.image} className="rounded-md object-cover"/></div> : null}
                       </div>
 
                     </div>))
