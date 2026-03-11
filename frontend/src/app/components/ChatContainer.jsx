@@ -39,9 +39,9 @@ export default function ChatContainer() {
             <ChatHeader/>
             <div className="flex flex-1 flex-col overflow-y-auto sm:p-4 px-1 py-4 space-y-4">
                 {messages.map((message)=>(
-                    <div key={message._id} className={`chat ${message.senderId===authUser._id ? "hidden" : "block"}`}>
+                    <div key={message._id} className={`chat ${message.senderId===authUser._id ? "chat-end" : "chat-start"}`}>
                       {/* Profile Pic icon */}
-                      <div className={`${message.senderId===authUser._id ? "chat-end" : "chat-start"} chat-image avatar relative sm:size-10 size-8`}>
+                      <div className={`${message.senderId===authUser._id ? "hidden" : "block"} chat-image avatar relative sm:size-10 size-8`}>
                         <Image fill sizes="40px" src={`${message.senderId===authUser._id ? authUser.profilePic || "/avatar.png" : selectedUser.profilePic || "/avatar.png"}`} alt="profile pic" className="object-cover rounded-full border-2"/>
                       </div>
 
