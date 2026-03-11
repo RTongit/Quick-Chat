@@ -12,7 +12,7 @@ const PORT = process.env.PORT
 
 app.use(cors(
   {
-    origin : "http://localhost:3000",
+    origin : process.env.FRONTEND_URL,
     credentials : true // because we are using cookies 
   }
 ))
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 
 server.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}`)
+  console.log(`Server is running on port ${PORT}`)
   connectDB()
   console.log(process.env.NODE_ENV)
 })
