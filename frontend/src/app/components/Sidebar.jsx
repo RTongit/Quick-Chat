@@ -19,15 +19,15 @@ export default function Sidebar() {
   if (isUsersLoading) return <SidebarLoadingSkeleton />;
 
   return (
-    <aside className="h-full w-18 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-300">
-      <div className="border-b border-base-300 w-full p-5">
+    <aside className="h-full w-13  lg:w-72 border-r border-base-300 flex flex-col transition-all duration-300">
+      <div className="border-b border-base-300 w-full box-border p-5">
         <div className="flex items-center gap-2">
           <User className="size-6" />
           <span className="lg:block hidden font-medium">Contacts</span>
         </div>
       </div>
 
-      <div className="overflow-y-auto w-full py-3   ">
+      <div className="overflow-y-auto w-full box-border py-3   ">
         {users.map((user) => (
           <button 
           key={user._id} 
