@@ -110,7 +110,7 @@ export default function SignUpPage() {
                 <input
                   type="text"
                   className="input input-bordered w-full pl-10"
-                  placeholder="Nigga Boy"
+                  placeholder="Suraj Kumar"
                   value={formData.fullName}
                   onChange={(e) => {
                     setFormData({ ...formData, fullName: e.target.value });
