@@ -6,6 +6,8 @@ import { create } from "zustand";
 import { toast } from "react-hot-toast";
 import { io } from "socket.io-client";
 
+// In production (Vercel), NEXT_PUBLIC_BACKEND_URL value comes from Vercel environment variables.
+// In development, NEXT_PUBLIC_BACKEND_URL value comes from local env
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export const useAuthStore = create((set,get) => ({
