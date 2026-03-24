@@ -18,7 +18,7 @@ export default function DummyContainer() {
         </div>
 
         {/* Welcome Text */}
-        <h2 className="text-2xl font-bold">Welcome to Chatty!</h2>
+        <h2 className="text-2xl font-bold">Welcome to Quick Chat!</h2>
         <p className="text-base-content/60">
           Select a conversation from the sidebar to start chatting
         </p>
