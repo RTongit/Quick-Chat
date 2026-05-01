@@ -1,6 +1,8 @@
 // Here create and set are functions provided by the zustand
 // see set syntax online
 // useAuthStore stores a function which is returned by create function
+// create() returns a custom hook connected to the Zustand store.
+// Its callback returns the initial store object containing variables and fucntions.
 "use client";
 import { create } from "zustand";
 import { toast } from "react-hot-toast";
