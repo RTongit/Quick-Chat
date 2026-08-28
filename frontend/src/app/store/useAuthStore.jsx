@@ -57,7 +57,7 @@ export const useAuthStore = create((set,get) => ({
       });
       const result = await res.json() 
       if(!res.ok) {
-        throw new Error(result.message || "Signup failed");
+        throw new Error(result.message || "Signup failed !");
       }
 
       set({authUser: result})
