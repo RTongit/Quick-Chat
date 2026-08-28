@@ -4,7 +4,7 @@ import AuthProvider from "./providers/AuthProviders";
 
 export const metadata = {
   title: "Quick Chat",
-  description: "A real time application used for chatting",
+  description: "A real time chat application used for chatting",
 };
 
 export default function RootLayout({ children }) {
