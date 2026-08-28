@@ -21,7 +21,6 @@ export const useAuthStore = create((set,get) => ({
   socket : null,
 
   isCheckingAuth: true,
-  // Check if the user is already authenticated (logged in) or not.
   checkAuth: async () => {
     try {
       const res = await fetch(`${BACKEND_URL}/api/auth/check`, {
