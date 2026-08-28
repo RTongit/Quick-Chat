@@ -104,7 +104,7 @@ export default function MessageInput()  {
         {/* Submit Button */}
         <button 
          type="submit"
-         className="btn btn-primary hover:bg-primary/60"
+         className="btn btn-primary hover:bg-primary/61"
          disabled={isDisabled}>
           <Send size={22}/>
         </button>
