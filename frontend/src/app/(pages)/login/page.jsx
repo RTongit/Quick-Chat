@@ -110,7 +110,7 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="size-5 text-gray-500/60 z-10" />
+                  <Lock className="size-6 text-gray-500/60 z-10" />
                 </div>
                 <input
                   type={showPassword ? "text" : "password"}
@@ -163,7 +163,7 @@ export default function LoginPage() {
       {/* Right Side(Pure UI Component,no logic)*/}
       <AuthImagePattern
         title="Join Our Community"
-        subtitle={`Connect With friends, share moments, and stay in touch with your loved ones`}
+        subtitle={`Connect With friends, share moments and thought, and stay in touch with your loved ones`}
       />
     </div>
   );

@@ -17,11 +17,9 @@ export default function AuthProvider({ children }) {
     document.documentElement.setAttribute("data-theme",theme)
   },[theme])
   
-  //spining loader animation below :
   if (isCheckingAuth) {
     return <Spinner />;
   }
-  // console.log("The user detail is:", authUser); // dev Only
   return (
     <div data-theme={theme}>
       {/* By placing <Toaster/> at the top we can access toast() function anywhere inside the route pages */}

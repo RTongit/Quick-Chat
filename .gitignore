@@ -3,7 +3,7 @@
 /.pnp
 .pnp.*
 
-# Environment variables
+# Environment variables for both backend and frontend
 **/.env*
 
 # Next.js

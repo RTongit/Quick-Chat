@@ -17,7 +17,7 @@ app.use(cors(
   }
 ))
 // “Parse incoming JSON request bodies, and allow up to 10MB of data.”
-app.use(express.json({limit:"10mb"}))
+app.use(express.json({limit:"11mb"}))
 app.use(cookieParser())
 
 app.use('/api/auth',authRoutes);

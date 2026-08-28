@@ -10,7 +10,3 @@ cloudinary.config({
 })
 
 export default cloudinary
-
-// The above code is  Cloudinary setup/config file
-// Loaded once
-// Reused everywhere in your backend

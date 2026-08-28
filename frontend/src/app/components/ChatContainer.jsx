@@ -61,7 +61,7 @@ export default function ChatContainer() {
 
                     </div>))
                   }
-                  {/* Dummy div */}
+                  {/* Dummy div for navigating to bottom section*/}
                   <div ref={messageScrollRef}></div>
 
             </div>
