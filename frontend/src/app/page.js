@@ -19,10 +19,6 @@ export default function HomePage() {
     }
   }, [authUser,router]);
 
-  // This will try to redirect first before rendering the page
-  // if(!authUser) {
-  //   router.replace("/login");
-  // }
 
   if (!authUser) return null; // prevent flash
 
