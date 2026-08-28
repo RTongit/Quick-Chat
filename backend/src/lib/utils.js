@@ -10,9 +10,8 @@ export default function generateToken(userId,res) {
     
     res.cookie('jwt',token,
         {
-            maxAge:7*24*60*60*1000,  // milliseconds
-            httpOnly : true,         // Cookie cannot be accessed by JavaScript.
-                                     // Prevents XSS attacks
+            maxAge:7*24*60*60*1000,  
+            httpOnly : true,                            
             sameSite : process.env.NODE_ENV === "production" ? "none" : "lax",     // Cookie is sent only from same site
             secure : process.env.NODE_ENV === "production" ? true : false
             //process.env.NODE_ENV is an environment variable that tells your 
