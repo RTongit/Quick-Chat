@@ -8,7 +8,7 @@ const Preview_Messages = [
   { id: 1, content: "Hey! How's it going?", isSent: false },
   {
     id: 2,
-    content: "I'm doing great! Just working on some new features.",
+    content: "I'm doing great! Just working on some new features.What about you",
     isSent: true,
   },
 ];
