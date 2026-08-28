@@ -10,7 +10,7 @@ export default function ChatHeader ()  {
     <div className="p-2.5 border-b-4 border-base-300">
 
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 lg:gap-4">
             {/* Avatar */}
             <div className="relative avatar size-10 ">
                 <Image fill sizes="40px" src={selectedUser.profilePic || "/avatar.png"} alt={selectedUser.fullName} className="object-cover rounded-full"/>
