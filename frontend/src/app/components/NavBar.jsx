@@ -49,7 +49,7 @@ export default function NavBar() {
                   onClick={handleClick}
                   className="flex gap-2 items-center"
                 >
-                  <LogOut className="size-5" />
+                  <LogOut className="size-5 md:size-6" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>
               </>
