@@ -1,6 +1,6 @@
 "use client";
 import { create } from "zustand";
-
+// Set a global theme
 export const useThemeStore = create((set) => ({
   theme:
     typeof window !== "undefined"
