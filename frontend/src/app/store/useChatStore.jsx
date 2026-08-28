@@ -20,7 +20,7 @@ export const useChatStore = create((set,get)=>({
             })
             const response = await res.json();
             if(!res.ok) {
-                throw new Error(response.message || "Failed to fetch Users");
+                throw new Error(response.message || "Sorry! Failed to fetch Users");
             }
             set({users : response})
         }
