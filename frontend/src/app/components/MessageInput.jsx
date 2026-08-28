@@ -18,7 +18,6 @@ export default function MessageInput()  {
       toast.error("Please select an image file")
       return;
     }
-    // console.log(file.name)
 
     const reader = new FileReader();
 
