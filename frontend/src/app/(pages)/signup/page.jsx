@@ -29,8 +29,6 @@ export default function SignUpPage() {
   }
 
   function validateForm() {
-    // toast.error() is just a UI notification
-    // toast.error() is nothing like a try...catch error.
     // trim() removes only leading and trailing spaces.
     if (!formData.fullName.trim()) {
       toast.error("Name is required");
