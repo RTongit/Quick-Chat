@@ -61,7 +61,6 @@ export async function sendMessage(req,res) {
         // Saving in DB
         await newMessage.save()
 
-        // todo : realtime functionality goes here socket.io will add later
         const receiverSocketId = getReceiverSocketId(userToChatId)
         if(receiverSocketId) {
             // send new message to only the receiver not to all online users 
