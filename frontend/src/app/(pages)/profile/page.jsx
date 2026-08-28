@@ -8,7 +8,7 @@ import {Poppins} from 'next/font/google'
 
 const poppins = Poppins({
     subsets : ["latin"],
-    weight: ["300", "400", "500", "600", "700"],
+    weight: ["300", "400", "500", "600", "700","800"],
 })
 
 export default function ProfilePage() {
@@ -66,7 +66,7 @@ export default function ProfilePage() {
                     {/* DP upload section */}
                     <div className="flex flex-col items-center gap-4">
                         <div className="relative">
-                            <img src={ ImageURL || authUser.profilePic ||"/avatar.png"} alt="Profile" 
+                            <img src={ ImageURL || authUser.profilePic ||"/avatar.png"} alt="ProfilePic" 
                             className="size-32 rounded-full object-cover border-4"/>
 
                             <label htmlFor="avatar-upload"
