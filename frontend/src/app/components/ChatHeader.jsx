@@ -1,9 +1,9 @@
-import { X } from "lucide-react";
+import { PencilRuler, X } from "lucide-react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useChatStore } from "../store/useChatStore"
 import Image from "next/image";
 
-export default function ChatHeader ()  {
+export default function ChatHeader ({onOpenBoard})  {
     const {selectedUser,setSelectedUser} = useChatStore();
     const {onlineUsers} = useAuthStore()
   return (
@@ -25,10 +25,16 @@ export default function ChatHeader ()  {
             </div>
         </div>
 
-        {/* Close Button */}
-        <button onClick={()=>{setSelectedUser(null)}} className="block">
-            <X/>
-        </button>
+        <div className="flex items-center gap-1">
+            <button onClick={onOpenBoard} className="btn btn-ghost btn-sm gap-1.5" aria-label="Open shared QuickBoard" title="Open shared QuickBoard">
+                <PencilRuler className="size-4"/>
+                <span className="hidden sm:inline">QuickBoard</span>
+            </button>
+            {/* Close Button */}
+            <button onClick={()=>{setSelectedUser(null)}} className="btn btn-ghost btn-square btn-sm" aria-label="Close chat">
+                <X/>
+            </button>
+        </div>
       </div>
 
     </div>

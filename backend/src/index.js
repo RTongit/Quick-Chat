@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import { connectDB } from './lib/db.js'
 import authRoutes from './routes/authRoutes.js';
 import messageRoutes from './routes/messageRoutes.js';
+import quickBoardRoutes from './routes/quickBoardRoutes.js';
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import { app,server } from './lib/socket.js';
@@ -22,6 +23,7 @@ app.use(cookieParser())
 
 app.use('/api/auth',authRoutes);
 app.use('/api/messages',messageRoutes);
+app.use('/api/quickboard',quickBoardRoutes);
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello World!')

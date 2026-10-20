@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useChatStore } from "../store/useChatStore"
 import ChatHeader from "./ChatHeader"
 import MessageInput from "./MessageInput"
@@ -9,8 +9,10 @@ import { useAuthStore } from "../store/useAuthStore"
 import getChatTime from "./constants/getChatTime"
 import Image from "next/image"
 import { useRef } from "react"
+import QuickBoard from "./QuickBoard"
 
 export default function ChatContainer() {
+    const [isBoardOpen,setIsBoardOpen] = useState(false)
     const {messages, getMessages, isMessagesLoading, selectedUser,subscribeToMessage,unsubscribeFromMessage} = useChatStore()
     const {authUser} = useAuthStore()
     const messageScrollRef = useRef(null);
@@ -36,7 +38,7 @@ export default function ChatContainer() {
 
     return(
         <div className="flex flex-col overflow-auto flex-1">
-            <ChatHeader/>
+            <ChatHeader onOpenBoard={()=>setIsBoardOpen(true)}/>
             <div className="flex flex-1 flex-col overflow-y-auto sm:p-4 px-1 py-4 space-y-4">
                 {messages.map((message)=>(
                     <div key={message._id} className={`chat ${message.senderId===authUser._id ? "chat-end" : "chat-start"}`}>
@@ -66,6 +68,7 @@ export default function ChatContainer() {
 
             </div>
             <MessageInput/>
+            {isBoardOpen && <QuickBoard key={selectedUser._id} peer={selectedUser} onClose={()=>setIsBoardOpen(false)}/>}
         </div>
     )
 }

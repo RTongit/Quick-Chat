@@ -24,6 +24,13 @@ Quick-Chat allows users to create accounts, authenticate securely, update their 
   * Real-time message delivery using Socket.IO
   * Persistent chat history stored in MongoDB
 
+* 🧑‍🎨 **Shared QuickBoard**
+
+  * Open a collaborative canvas from any one-to-one chat
+  * Draw with a pen, eraser, lines, and rectangles; add text labels
+  * Sync live drawing previews with Socket.IO and save board strokes in MongoDB
+  * Send a board snapshot back into the conversation
+
 * 🟢 **Online User Status**
 
   * Real-time online/offline user tracking
@@ -121,7 +128,7 @@ The frontend package configuration currently uses Next.js 16, React 19, Socket.I
                      └─────────────────┘
 ```
 
-The backend exposes authentication and messaging REST endpoints while Socket.IO handles real-time connection and online-user tracking.
+The backend exposes authentication, messaging, and shared-board REST endpoints. Socket.IO handles message delivery, online-user tracking, and live QuickBoard previews.
 
 ---
 

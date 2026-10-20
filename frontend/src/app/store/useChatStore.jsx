@@ -55,7 +55,7 @@ export const useChatStore = create((set,get)=>({
 
     sendMessage : async (messageData) =>{
         // Below line is coming from zustand
-        const {selectedUser,messages} = get()
+        const {selectedUser} = get()
         try {
             const res = await fetch(`${BACKEND_URL}/api/messages/sendMessage/${selectedUser._id}`,{
                 method : "POST",
@@ -70,11 +70,13 @@ export const useChatStore = create((set,get)=>({
             if(!res.ok) {
                 throw new Error(response.message || "Failed to send Message");
             }
-            set({messages : [...messages,response]})
+            set((state)=>({messages : [...state.messages,response]}))
+            return response
             
         }
         catch(error) {
             toast.error(error.message)
+            return null
         }
 
     },
