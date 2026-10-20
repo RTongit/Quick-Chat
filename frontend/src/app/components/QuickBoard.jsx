@@ -24,6 +24,17 @@ function upsertStroke(strokes, nextStroke) {
   return strokes.map((stroke) => stroke.id === nextStroke.id ? nextStroke : stroke).slice(-MAX_STROKES);
 }
 
+async function readApiResponse(response) {
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.toLowerCase().includes("application/json")) {
+    if (response.status === 404) {
+      throw new Error("QuickBoard API was not found. Deploy the latest backend and check that Vercel's NEXT_PUBLIC_BACKEND_URL points to that backend.");
+    }
+    throw new Error(`The backend returned a non-JSON response (HTTP ${response.status}). Check the backend deployment and NEXT_PUBLIC_BACKEND_URL.`);
+  }
+  return response.json();
+}
+
 function drawStroke(context, stroke, width, height) {
   if (!stroke.points?.length) return;
 
@@ -79,6 +90,7 @@ export default function QuickBoard({ peer, onClose }) {
   const [activeColor, setActiveColor] = useState(COLORS[0]);
   const [textValue, setTextValue] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
   const [isClearing, setIsClearing] = useState(false);
   const [savingCount, setSavingCount] = useState(0);
   const canvasRef = useRef(null);
@@ -174,19 +186,23 @@ export default function QuickBoard({ peer, onClose }) {
     let cancelled = false;
     async function loadBoard() {
       setIsLoading(true);
+      setLoadError("");
       try {
         const response = await fetch(`${BACKEND_URL}/api/quickboard/${peer._id}`, {
           credentials: "include",
           cache: "no-store",
         });
-        const result = await response.json();
+        const result = await readApiResponse(response);
         if (!response.ok) throw new Error(result.message || "Could not load the shared board.");
         if (!cancelled) {
           for (const stroke of result) finalizedIdsRef.current.add(stroke.id);
           setStrokes((current) => result.reduce((merged, stroke) => upsertStroke(merged, stroke), current));
         }
       } catch (error) {
-        if (!cancelled) toast.error(error.message);
+        if (!cancelled) {
+          setLoadError(error.message);
+          toast.error(error.message);
+        }
       } finally {
         if (!cancelled) setIsLoading(false);
       }
@@ -218,12 +234,13 @@ export default function QuickBoard({ peer, onClose }) {
         credentials: "include",
         body: JSON.stringify({ stroke }),
       });
-      const savedStroke = await response.json();
+      const savedStroke = await readApiResponse(response);
       if (!response.ok) throw new Error(savedStroke.message || "Could not save that drawing.");
       finalizedIdsRef.current.add(savedStroke.id);
       setStrokes((current) => upsertStroke(current, savedStroke));
       return true;
     } catch (error) {
+      setLoadError(error.message);
       toast.error(error.message);
       return false;
     } finally {
@@ -252,7 +269,7 @@ export default function QuickBoard({ peer, onClose }) {
   }
 
   function beginStroke(event) {
-    if (isLoading || isClearing) return;
+    if (isLoading || isClearing || loadError) return;
     const point = getNormalizedPoint(event);
     if (activeTool === "text") {
       addTextAt(point);
@@ -316,7 +333,7 @@ export default function QuickBoard({ peer, onClose }) {
         method: "DELETE",
         credentials: "include",
       });
-      const result = await response.json();
+      const result = await readApiResponse(response);
       if (!response.ok) throw new Error(result.message || "Could not clear the board.");
       finalizedIdsRef.current.clear();
       setStrokes([]);
@@ -400,7 +417,7 @@ export default function QuickBoard({ peer, onClose }) {
         <main className="relative m-3 min-h-0 flex-1 overflow-hidden rounded-xl border border-base-300 bg-white sm:m-5">
           <canvas
             ref={canvasRef}
-            className={`h-full w-full touch-none bg-white ${activeTool === "text" ? "cursor-text" : "cursor-crosshair"}`}
+            className={`h-full w-full touch-none bg-white ${loadError ? "pointer-events-none" : activeTool === "text" ? "cursor-text" : "cursor-crosshair"}`}
             onPointerDown={beginStroke}
             onPointerMove={extendStroke}
             onPointerUp={finishStroke}
@@ -410,6 +427,15 @@ export default function QuickBoard({ peer, onClose }) {
           {isLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-white/80 text-sm text-base-content/60">
               <LoaderCircle className="mr-2 size-5 animate-spin" /> Loading shared board…
+            </div>
+          )}
+          {!isLoading && loadError && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white/95 p-6 text-center">
+              <div className="max-w-lg">
+                <h3 className="text-lg font-semibold text-base-content">QuickBoard is unavailable</h3>
+                <p className="mt-2 text-sm text-base-content/70">{loadError}</p>
+                <p className="mt-3 text-xs text-base-content/60">The QuickBoard API is included in the project backend. After deploying it, reopen this board.</p>
+              </div>
             </div>
           )}
         </main>
